@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <style>
+        .wrap {
+            width: 800px;
+            height:600px;
+            margin: 0 auto;
+            border:16px solid transparent;
+            /* border-image:16 repeating-linear-gradient(-45deg,red 0,red 1em,transparent 0,transparent 2em,#58a 0,#58a 3em,transparent 0,transparent 4em);*/
+            border-image: repeating-linear-gradient(-45deg,red 0,red 1em,transparent 0,transparent 2em,#58a 0,#58a 3em,transparent 0,transparent 4em) 16 16 16 16 repeat;
+            font: 13px/1.45em Microsoft yahei;
+            text-align: center;
+            /*perspective透点 看点*/
+
+            perspective: 1000px;/*1-1w是 最小视距到最大视距*/
+            perspective-origin:50% -80px;/*这是观看点原点
+                                        50% 50% 相当于在 元素的正面看 元素，把动画静止下来即可看懂
+                                        100% 100% 相当于在元素的右下角看 然后调整视距到1000即可；
+                                        */
+
+        }
+      
+       
+        .cube {
+            width: 100px;
+            height:100px;
+            margin: 0 auto;
+            background: red;
+            position: relative;
+            margin-top: 20vh;
+           transform-style: preserve-3d;
+           transform-origin:right bottom; 
+          /*  background: red;*/
+        }
+        .cube div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            /*border:1px solid rgba(0,0,0,.2);*/
+            box-shadow: 0px 2px 15px -2px rgba(0,0,0,.3);
+            color:white;
+            border-radius: 20px;
+            font-family: Consolas;
+            font-size:22px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 100px;
+
+        }
+
+        .back{
+            transform: translateZ(-50px) rotate(0deg);
+            background: url(img/dice6.png) 0 / cover;
+
+        }
+        .right{
+            transform: translateX(50px) rotateY(90deg);
+            background: url(img/dice3.png) 0 / cover;
+
+        }
+        .bottom{
+            transform: translateY(50px) rotateX(90deg);
+            background: url(img/dice2.png) 0 / cover;
+
+        }
+        .left{
+            transform: translateX(-50px) rotateY(-90deg);
+            background: url(img/dice4.png) 0 / cover;
+
+        }
+        .top{
+            transform: translateY(-50px) rotateX(90deg);
+            background: url(img/dice5.png) 0 / cover;
+
+        }
+        .front{
+            transform: translateZ(50px);
+            background: url(img/dice1.png) 0 / cover;
+
+        }
+        input{
+        	display: block;
+        	width: 720px;
+        	height: 50px;
+        }
+
+        @keyframes run6{
+            from{
+            	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            to{
+            	transform: rotateX(-87deg) rotateY(-1deg) rotateZ(-171deg);
+            	
+            }
+        }
+       @keyframes run5{
+            from{
+            	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            to{
+            	transform: rotateX(0deg) rotateY(65deg) rotateZ(-1deg);
+            }
+        }
+       @keyframes run4{
+            from{
+            	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            to{
+            	transform: rotateX(0deg) rotateY(73deg) rotateZ(85deg);
+            }
+        }
+       @keyframes run3{
+            from{
+            	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            to{
+            	transform: rotateX(11deg) rotateY(-125deg) rotateZ(-81deg);
+            }
+        }
+        @keyframes run2{
+            from{
+            	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            to{
+            	transform: rotateX(123deg) rotateY(53deg) rotateZ(-3deg);
+            }
+        }
+        @keyframes run1{
+            from{
+            	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            to{
+            	transform: rotateX(86deg) rotateY(-1deg) rotateZ(65deg);
+            }
+        }
+        @keyframes run0{
+            from{
+            	transform:rotateY(0deg) rotateZ(50deg);
+            }
+
+            to{
+            	transform:rotateY(360deg) rotateZ(50deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="cube">
+        <!--1 6 5 2 4 3 -->
+        <div class="front"></div>
+        <div class="back"></div>
+        <div class="top"></div>
+        <div class="bottom"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</div>
+</div>
+
+<input type="range" name="xx" min="-360" max="360" id="rotateX" step="1"><input type="text" name="" id="xnum" value="0">
+<input type="range" name="yy" min="-360" max="360" id="rotateY" step="1"><input type="text" name="" id="ynum" value="0">
+<input type="range" name="zz" min="-360" max="360" id="rotateZ" step="1"><input type="text" name="" id="znum" value="0">
+
+<button id="random">random</button>
+<script type="text/javascript">
+	/*$(function(){
+		let x = $('#rotateX');
+		let y = $('#rotateY');
+		let z = $('#rotateZ');
+
+		let xnum = $('#xnum');
+		let ynum = $('#ynum');
+		let znum = $('#znum');
+
+		let cube = $('.cube');
+
+		x.mousemove(function(){
+			xnum.val(x.val())
+			cube.css('transform','rotateX(' + x.val() +'deg)' + 'rotateY(' + y.val() + 'deg)' + 'rotateZ(' + z.val() + 'deg)')
+		})
+		y.mousemove(function(){
+			ynum.val(y.val())
+			cube.css('transform','rotateX(' + x.val() +'deg)' + 'rotateY(' + y.val() + 'deg)' + 'rotateZ(' + z.val() + 'deg)')
+		})
+		z.mousemove(function(){
+			znum.val(z.val())
+			cube.css('transform','rotateX(' + x.val() +'deg)' + 'rotateY(' + y.val() + 'deg)' + 'rotateZ(' + z.val() + 'deg)')
+		})
+	})
+*/  
+	$(function(){
+		let diceWrapper = $('.cube')
+		$('#random').click(function(){
+			let randomNum = (Math.floor(Math.random()*6)) +1;
+			switch(randomNum){
+				case 1:{
+					//先播放转动动画
+					diceWrapper.attr('style','animation:run0 .2s linear infinite forwards')
+
+					setTimeout(function(){
+						diceWrapper.removeAttr('style');
+						diceWrapper.attr('style','tansform-origin:50% 50% ;animation:run1 .2s linear 1 forwards')
+					},2500)
+
+					
+				}break;
+				case 2:{
+					diceWrapper.attr('style','animation:run0 .2s linear infinite forwards')
+
+					setTimeout(function(){
+						diceWrapper.removeAttr('style');
+						diceWrapper.attr('style','tansform-origin:50% 50% ;animation:run2 .2s linear 1 forwards')
+					},2500)
+
+					
+				}break;
+				case 3:{
+					diceWrapper.attr('style','animation:run0 .2s linear infinite forwards')
+
+					setTimeout(function(){
+						diceWrapper.removeAttr('style');
+						diceWrapper.attr('style','tansform-origin:50% 50% ;animation:run3 .2s linear 1 forwards')
+					},2500)
+				}break;
+				case 4:{
+					diceWrapper.attr('style','animation:run0 .2s linear infinite forwards')
+
+					setTimeout(function(){
+						diceWrapper.removeAttr('style');
+						diceWrapper.attr('style','tansform-origin:50% 50% ;animation:run4 .2s linear 1 forwards')
+					},2500)
+				}break;
+				case 5:{
+					diceWrapper.attr('style','animation:run0 .2s linear infinite forwards')
+
+					setTimeout(function(){
+						diceWrapper.removeAttr('style');
+						diceWrapper.attr('style','tansform-origin:50% 50% ;animation:run5 .2s linear 1 forwards')
+					},2500)
+				}break;
+				case 6:{
+					diceWrapper.attr('style','animation:run0 .2s linear infinite forwards')
+
+					setTimeout(function(){
+						diceWrapper.removeAttr('style');
+						diceWrapper.attr('style','tansform-origin:50% 50% ;animation:run6 .2s linear 1 forwards')
+					},2500)
+				}break;
+
+			}
+			
+		})
+	})
+</script>
+</body>
+</html>

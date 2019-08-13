@@ -1,0 +1,64 @@
+@keyframes run6{
+            from{
+            	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            to{
+            	transform: rotateX(-87deg) rotateY(-1deg) rotateZ(-171deg);
+            	
+            }
+        }
+       @keyframes run5{
+            from{
+            	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            to{
+            	transform: rotateX(0deg) rotateY(65deg) rotateZ(-1deg);
+            }
+        }
+       @keyframes run4{
+            from{
+            	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            to{
+            	transform: rotateX(0deg) rotateY(73deg) rotateZ(85deg);
+            }
+        }
+       @keyframes run3{
+            from{
+            	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            to{
+            	transform: rotateX(11deg) rotateY(-125deg) rotateZ(-81deg);
+            }
+        }
+        @keyframes run2{
+            from{
+            	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            to{
+            	transform: rotateX(123deg) rotateY(53deg) rotateZ(-3deg);
+            }
+        }
+        @keyframes run1{
+            from{
+            	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            to{
+            	transform: rotateX(86deg) rotateY(-1deg) rotateZ(65deg);
+            }
+        }
+        @keyframes run0{
+            from{
+            	transform:rotateY(0deg) rotateZ(50deg);
+            }
+
+            to{
+            	transform:rotateY(360deg) rotateZ(50deg);
+            }
+        }

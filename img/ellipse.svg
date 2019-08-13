@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160" height="60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:cge="http://iec.ch/TC57/2005/SVG-schema#" xmlns:hzsvg="http://holleygrid.cn/svg">
+
+    
+	<defs>
+		<linearGradient id="toBottom" x1="0%" y1="0%" x2="0%" y2="100%">
+			<stop offset="0%" style="stop-color:#03a9f4; stop-opacity:1" />
+			<stop offset="100%" style="stop-color:#1056f2; stop-opacity:.8" />
+    	</linearGradient>
+
+    	<filter id="f1" x="0" y="0" width="150" height="30">
+    		<feOffset result="offOut" in="SourceAlpha" dx="1" dy="2" />
+    		<feGaussianBlur result="blurOut" in="offOut" stdDeviation="1" />
+    		<feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+    	</filter>
+	</defs>
+    
+    <rect x="0" y="0" rx="15" ry="15" width="150" height="30"
+        style="
+        fill:url(#toBottom);
+        filter:url(#f1)
+       	"/>
+
+</svg>

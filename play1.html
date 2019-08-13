@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Play</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+
+	<script>$.noConflict();</script>
+	<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.js"></script>
+	<script src="js/touch.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>   <!-- 1.14.7 -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+	<style type="text/css">
+	*{
+		margin: 0;
+	}
+		
+		.game-wrapper{
+			
+			width: 100%;
+			background: url(img/bg.png) no-repeat 0 / cover;
+
+		}
+		.top{
+			display: flex;
+			flex-wrap: nowrap;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+	
+			width: 100%;
+			height: 10%;
+
+		}
+		.game-area{
+			
+			width: 100%;
+			height: 80%;
+			
+
+			display: grid;
+			grid-template-columns: auto auto auto auto auto auto ;
+			grid-template-rows: auto auto auto auto auto auto auto auto auto auto ;
+			grid-column-gap: 10px;
+			grid-row-gap: 10px;
+		}
+		.game-area .land{
+
+			/*border:1px solid red;*/
+			background: url(img/land.png) no-repeat 0 / 80% 80%;
+
+
+		}
+		.random-num{
+		
+			width: 100%;
+			height: 10%;
+		}
+		.money-wrapper{
+			width: auto;
+			height: auto;
+
+			position: relative;
+		}
+		.money{
+			width: 150px;
+			height: 30px;
+			background: rgba(0,0,0,.5);
+		
+			clip-path:ellipse(40% 90% at 50% 50%); 
+			/*shape-outside: ellipse(40% 90% at 50% 50%);*/
+			shape-margin:.5rem;
+			position: relative;
+			color:#fff;
+			text-align: center;
+			line-height: 30px;
+			letter-spacing: .1em;
+			text-indent: 1em;
+		}
+		.money-img{
+
+			width: 40px;
+			height:40px;
+			background: black;
+			border-radius: 50%;
+			position: absolute;
+			left: 10%;
+			top: 50%;
+			transform:translateY(-50%) ;
+			z-index: 2;
+			background: url(img/money.png) no-repeat 0 / cover;
+		}
+		.hp-wrapper{
+			position: relative;
+		}
+		.hp{
+			width: 150px;
+			height: 30px;
+			background: rgba(0,0,0,.5);
+		
+			clip-path:ellipse(40% 90% at 50% 50%); 
+			/*shape-outside: ellipse(40% 90% at 50% 50%);*/
+			shape-margin:.5rem;
+			color:#fff;
+			text-align: center;
+			line-height: 30px;
+			letter-spacing: .1em;
+			text-indent: 1em;
+			
+
+		}
+		.hp-img{
+			width: 40px;
+			height:40px;
+			background: black;
+			
+			position: absolute;
+			left: 8%;
+			top: 50%;
+			transform:translateY(-50%);
+			z-index: 2;
+			background: url(img/hp.png) no-repeat 0 /  80% 100%;
+		}
+		.dice{
+			width: 80px;
+			height: 100%;
+			background: url(img/dice.png) no-repeat 0 / cover;
+			transition: all .1s linear;
+			
+		}
+		@keyframes shake{
+			form{opacity: 1;}
+			
+			90%{
+				transform: translateY(-200px);
+			}
+			to{
+				opacity: 0;
+			}
+		}
+		.dice:hover ,.dice:active ,.dice:focus{
+			transform: scale(1.02);
+			background: url(img/dice-hover.png) no-repeat 0 / cover;
+		}
+		.random-num{
+			display: flex;
+			flex-wrap: nowrap;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+		}
+	</style>
+</head>
+<body class="body">
+	<div class="game-wrapper">
+		<div class="top">
+			<div class="money-wrapper">
+				<div class="money">15926</div>
+				<div class="money-img"></div>
+			</div>
+			
+			<div class="hp-wrapper">
+				<div class="hp">31</div>
+				<div class="hp-img"></div>
+			</div>
+		</div>
+		<div class="game-area">
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			<div class="land"></div>
+			
+		</div>
+		<div class="random-num">
+			<div class="dice" draggable="true" >
+				
+			</div>
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript">
+	$(function(){
+
+		$('.game-wrapper').css('height',window.screen.availHeight);
+
+		let dice = $('.dice');
+		console.log(dice)
+		dice.swipeUp(function(e){
+			console.log("上滑");
+			//jQuery()
+
+			
+			dice.attr('style','animation:shake 1s ease 1');
+			setTimeout(function(){
+				dice.removeAttr('style');
+			},1000)
+		})
+
+
+		let UA = window.navigator.userAgent;
+		let CLICK='click';
+		if (/ipad|iphone|android/.test(UA)) {
+			CLICK = 'tap';
+		}
+
+		// elem[CLICK](function(){})
+	});
+
+	
+
+</script>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet">
+
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>   <!-- 1.14.7 -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
+    <title>公告</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        body{
+            background: #eeeeee;
+        }
+        .title{
+
+            width: 100%;
+            height: auto;
+            padding: 5px 0;
+            text-align: center;
+            background: #ffffff;
+            position: relative;
+
+
+        }
+        .title h1{
+            
+            font: 1.2em  'Microsoft YaHei' !important;
+            margin: 0 !important;
+        }
+        .title span{
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+        }
+        .nav-wrapper{
+            width: 100%;
+            height: 43px;
+            padding: 0;
+            background: rgba(255,255,255,.99);
+            box-shadow: 0 0 4px rgba(0,0,0,0.15);
+            position:absolute;
+            left:0;
+        }
+        .nav-head{
+            display: flex;
+            justify-content: space-between;
+            width: 66.666667%;
+            height: inherit;
+            padding: 0;
+            float: none;
+            margin: 0 auto;
+        }
+        .nav-list{
+            display: flex;
+            flex-direction:row;
+            flex-wrap:nowrap;
+            justify-content:flex-start;
+            width: auto;
+            height: inherit;
+            padding: 0;
+
+
+        }
+
+        .nav-list a{
+            text-decoration: none;
+            color: rgba(0,0,0,.3);
+            margin: 0 auto;
+        }
+        .nav-list li{
+            display:block;
+            width:33.33333333333333333%;
+            height:inherit;
+            line-height: 43px;
+            text-align: center;
+        }
+        /*.nav-list li:hover:not(.logo){
+            border-bottom:1.5px solid red;
+        }*/
+        .playGame{
+            background:#f59887;
+        }
+        .playGame:hover{
+            border-bottom: 1.5px solid #7ecef4;
+        }
+        .playGame:hover a{
+            color:#7ecef4;
+        }
+        .trans-red:hover{
+            border-bottom: 1.5px solid #ff8968;
+        }
+        .trans-red:hover a{
+            color:#ff8968;
+        }
+        .shop{
+
+
+        }
+        .notice-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .notice{
+            width:93%;
+            padding: 10px 15px;
+            height:80px;
+            background: #ffffff;
+            margin-top: 10px;
+
+        }
+
+
+
+        /*media */
+        @media screen and (max-width: 768px){
+            .nav-head{
+                width:100%;
+
+            }
+            .nav-list{
+                width: 100%;
+
+            }
+
+        }
+    </style>
+</head>
+<body>
+<div class="title">
+    <span class="fa fa-chevron-left" onclick="window.history.go(-1)"></span>
+    <h1>游戏公告</h1>
+</div>
+<div id="notice-area" class="notice-wrapper">
+    <div class="notice" v-for="(i,index) in notices">{{i.noticeContent}}</div>
+</div>
+
+<script>
+    $(function(){
+
+        new Vue({
+            el:'#notice-area',
+            data:{
+                notices:[
+                    {noticeContent:'您在' + new Date() + "成功充值100元",noticeTime: new Date()},
+                    {noticeContent:'您在' + new Date() + "成功充值100元",noticeTime: new Date()},
+                    {noticeContent:'您在' + new Date() + "成功充值100元",noticeTime: new Date()}
+                ]
+            },
+            filters:{
+                filterDate:function(value,filterFormat = "YYYY-MM-DD HH:mm:ss"){
+                    console.log(value);
+
+                    return moment(value).format(filterFormat);
+                }
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
