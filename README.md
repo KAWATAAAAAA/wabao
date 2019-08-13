@@ -7,3 +7,7 @@ obtk 辣鸡实训项目
 顺便说一句VUE是真好用
 
 本次项目中使用了Vue,jQuery.zepto,font-awsome,bootstrap 等等
+
+
+****** 本次的master分支为备份版本*******
+****** 下次将次分支作为主要版本、下次上传*******
