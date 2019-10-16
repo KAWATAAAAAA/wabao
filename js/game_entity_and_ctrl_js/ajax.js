@@ -1,64 +1,48 @@
 function getPlayerInfo() {
 
-    let promise = $.ajax({
-        url: '../untitled/dataTest.txt',
-        type: 'POST',
-        //data: 'userID',
-        async: false,
-        dataType: 'json',
-        contentType: "application/json;utf-8",
-        success(data) {
+    let url = '../untitled/dataTest.txt';
+    let requestData = '';
+    let isAsync = false;
+    let sendType = "POST";
+    let successCallback = function(data){
+        // entity 实体信息初始化
+        console.log('获取到的金币是：'+ data.money)
+        userVM.CoinsNum = data.money;
+        userVM.SpiritNum = data.hp;
 
-            // entity 实体信息初始化
-            userVM.CoinsNum = data.money;
-            userVM.SpiritNum = data.hp;
+        player.moneyNum = data.money;
+        player.HPNum = data.hp;
+        console.log(data.money,data.hp)
+    }
 
-            player.moneyNum = data.money;
-            player.HPNum = data.hp;
-            console.log(data.money,data.hp)
-        },
-        error(err) {
-            alert(false)
-            window.history.go(-1)
-        }
+    let FailedCallback = function(err){
+        alert(false)
+        window.history.go(-1)
+    }
+    todoAjax(url,requestData,isAsync,sendType,successCallback,FailedCallback);
 
-    });
 
     if (player.HPNum <= 0) {
         alert('您的体力不足，请前往充值');
         window.history.go(-1)
     }
-    /*
 
-        Promise.all([
-            promise
-            ]).then(
-                result =>{
-                    alert('Promise成功了' + result)
-                    console.log(result)
-                    console.log(result.responseText.money,result.responseText.hp)
-                },
-                err =>{
-                    alert('Promise失败了' + err)
-                }
-                    );*/
 
 }
 
 function todoStorage() {
-    $.ajax({
-        url:'',
-        type:'POST',
-        async:true,
-        contentType: "application/json;utf-8",
-        success(){
+    let [url,requestData,isAsync,sendType] = ["","Id",true,"POST"];
+    let successCallback = function(data){
 
-        },
-        error(){
 
-        }
+        window.history.go(-1);
+    }
+    let FailedCallback = function(err){
+        alert("网络不稳定，保存失败，请重试",err);
+    }
 
-    })
+
+    todoAjax(url,requestData,isAsync,sendType,successCallback,FailedCallback);
 }
 
 let userVM = new Vue({
@@ -83,3 +67,8 @@ let userVM = new Vue({
 
     }
 })
+
+//todoAjax(url,requestData,isAsync,sendType,successCallback,FailedCallback);
+
+
+

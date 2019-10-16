@@ -16,8 +16,6 @@ MoneyObj.prototype.init = function(){
 
     this.img =  new Image();
     this.img.src = './img/money.png';
-
-    console.log(this.img)
 }
 MoneyObj.prototype.draw = function(){
     //console.log("draw")

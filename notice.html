@@ -11,8 +11,9 @@
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>   <!-- 1.14.7 -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+
     <title>公告</title>
     <style>
         *{
@@ -35,7 +36,7 @@
 
         }
         .title h1{
-            
+
             font: 1.2em  'Microsoft YaHei' !important;
             margin: 0 !important;
         }
@@ -118,13 +119,30 @@
         .notice{
             width:93%;
             padding: 10px 15px;
-            height:80px;
+
+            max-height: 100px;
             background: #ffffff;
             margin-top: 10px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+
+
 
         }
+        .notice h2{
+            font-size: 15px !important;
+        }
+        .notice span{
+            max-width:10rem;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 12px;
+            color: #999;
 
-
+        }
+        .notice i{
+            color: #666;
+        }
 
         /*media */
         @media screen and (max-width: 768px){
@@ -141,36 +159,48 @@
     </style>
 </head>
 <body>
+<header></header>
 <div class="title">
     <span class="fa fa-chevron-left" onclick="window.history.go(-1)"></span>
     <h1>游戏公告</h1>
 </div>
 <div id="notice-area" class="notice-wrapper">
-    <div class="notice" v-for="(i,index) in notices">{{i.noticeContent}}</div>
+    <div class="notice" v-for="(item,index) in notices">
+        <h2>{{item.NoticeTitle}}</h2>
+        <span>{{item.NoticeContent}}</span>
+        <span><i>{{item.NoticeDate}}</i></span>
+    </div>
 </div>
 
 <script>
     $(function(){
 
-        new Vue({
+        let [url,data,async,type] = ['','',true,"POST"]
+        let scallback = function(data){
+            noticeVM.notices = data;
+
+        }
+        let fcallback = function(err){
+            alert("网络不稳定，读取公告失败")
+        }
+
+
+      let noticeVM =   new Vue({
             el:'#notice-area',
             data:{
                 notices:[
-                    {noticeContent:'您在' + new Date() + "成功充值100元",noticeTime: new Date()},
-                    {noticeContent:'您在' + new Date() + "成功充值100元",noticeTime: new Date()},
-                    {noticeContent:'您在' + new Date() + "成功充值100元",noticeTime: new Date()}
+                    {Noticeid:0,NoticeTitle:'关于公测期间的服务器异常',NoticeContent:'您在' + new Date() + "成功充值100元",NoticeDate:"2019-8-16"},
+                    {Noticeid:1,NoticeTitle:'心之门概率公示榜',NoticeContent:'您在' + new Date() + "成功充值100元wff oadfajfjf df adsjf asdof ad fagsfafadfa dfasdfadsf",NoticeDate:"2019-8-16"},
+                    {Noticeid:2,NoticeTitle:'欢迎来到挖宝游戏 查看须知',NoticeContent:'您在' + new Date() + "成功充值100元",NoticeDate:"2019-8-16"}
                 ]
-            },
-            filters:{
-                filterDate:function(value,filterFormat = "YYYY-MM-DD HH:mm:ss"){
-                    console.log(value);
-
-                    return moment(value).format(filterFormat);
-                }
             }
         });
 
+        todoAjax(url,data,async,type,scallback,fcallback);
+
     });
+
+
 </script>
 </body>
 </html>

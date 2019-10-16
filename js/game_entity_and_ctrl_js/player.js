@@ -64,7 +64,7 @@ Player.prototype.move = function(randomNumValue){
 			setTimeout(function(){
 				player.x = landObj.x[player.inLandArrIndexId + e];   //人物的X 轴为 所在第（n）块陆地的 x 轴，e是移标，每次都移动一格
 				player.y = landObj.y[player.inLandArrIndexId + e];
-				console.log('this.inLandArrIndexId:' + player.inLandArrIndexId);
+				console.log('上一次挖宝的位置:' + player.inLandArrIndexId);
 				console.log('thisX:' + player.x);
 				console.log('thisY:' + player.y);
 			},t);
@@ -88,9 +88,9 @@ Player.prototype.update = function(randomNumValue){
 	*/
 
 	this.inLandArrIndexId += randomNumValue;  // 更新 人物的位置
-
 	let animInfinID = setInterval(function(){  // 挖土
 		ctx2.clearRect(0,0,wsaw,wsah);
+
 		player.changeStatus();						//改变人物动作
 	},1000 / 60);
 

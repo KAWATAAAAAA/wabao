@@ -10,397 +10,178 @@
   <meta name="format-detection" content="telephone=no" />
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet">
-
+  <link href="css/index_style.css" rel="stylesheet">
   <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
   <script type="text/javascript" src="js/popper.min.js"></script>   <!-- 1.14.7 -->
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-  <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <script type="text/javascript" src="js/common.js"></script>
   <title>主页</title>
-  <style>
-    *{
-      margin: 0;
-      padding: 0;
 
-    }
-    body{
-      position: relative;
-      background: url(img/bg.png) no-repeat 0 / cover;
-    }
-    .title{
-        width: 100%;
-        height: auto;
-        padding: 5px 0;
-        text-align: center;
-        background: #ffffff;
-
-    }
-    .title h1{
-        font: 1.5em  'Microsoft YaHei' !important;
-    }
-    .nav-wrapper{
-      width: 100%;
-      height: 43px;
-      padding: 0;
-      background: rgba(255,255,255,.99);
-      box-shadow: 0 0 4px rgba(0,0,0,0.15);
-      position:absolute;
-      left:0;
-    }
-    .nav-head{
-      display: flex;
-      justify-content: space-between;
-      width: 66.666667%;
-      height: inherit;
-      padding: 0;
-      float: none;
-      margin: 0 auto;
-    }
-    .nav-list{
-      display: flex;
-      flex-direction:row;
-      flex-wrap:nowrap;
-      justify-content:flex-start;
-      width: auto;
-      height: inherit;
-      padding: 0;
-
-
-    }
-
-    .nav-list a{
-      text-decoration: none;
-      color: rgba(0,0,0,.3);
-      margin: 0 auto;
-    }
-    .nav-list li{
-      display:block;
-      width:33.33333333333333333%;
-      height:inherit;
-      line-height: 43px;
-      text-align: center;
-    }
-    /*.nav-list li:hover:not(.logo){
-        border-bottom:1.5px solid red;
-    }*/
-    .playGame{
-      background:#f59887;
-    }
-    .playGame:hover{
-      border-bottom: 1.5px solid #7ecef4;
-    }
-    .playGame:hover a{
-      color:#7ecef4;
-    }
-    .trans-red:hover{
-      border-bottom: 1.5px solid #ff8968;
-    }
-    .trans-red:hover a{
-      color:#ff8968;
-    }
-
-    .login-reg-wrapper{
-      border: 1px solid red;
-      width: 80%;
-      height: 300px;
-      position: absolute;
-      top:50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
-      display: flex;
-      flex-wrap:wrap;
-      justify-content: center;
-      align-items: center;
-    }
-    .login{
-       width: 80%;
-       height: 80px;
-       background: #03a9f4;
-      border-radius: 5px;
-      text-align: center;
-
-      font:bold 1.5em "Microsoft YaHei";
-      color:#fff;
-
-      line-height: 80px;
-     }
-    .reg{
-      width: 80%;
-      height: 80px;
-      background: #ff6600;
-      text-align: center;
-      font:bold 1.5em "Microsoft YaHei";
-      color:#fff;
-      line-height: 80px;
-    }
-    .top-wrapper{
-      
-      height: 80px;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-    }
-    .top-wrapper > div:not(.top-right){
-      width: 40%;
-      max-width: 50%;
-      padding: 15px;
-      height: inherit;
-     
-    }
-    .top-right{
-      width: 60%;
-      height: inherit;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: space-around;
-      align-items: center;
-    }
-    .money-wrapper{
-      width: auto;
-      height: auto;
-
-      position: relative;
-    }
-    .money{
-      width: 150px;
-      height: 30px;
-      *background: rgba(0,0,0,.5);
-      background: linear-gradient(-45deg,rgba(255,255,255,.8),transparent,rgba(255,255,255,.8));
-      box-shadow: 2px 2px 10px -8px rgba(0,0,0,.8);
-      clip-path:ellipse(40% 90% at 50% 50%); 
-      /*shape-outside: ellipse(40% 90% at 50% 50%);*/
-      shape-margin:.5rem;
-      position: relative;
-      color:#fff;
-      text-align: center;
-      line-height: 30px;
-      letter-spacing: .1em;
-      text-indent: 1em;
-    }
-    .money-img{
-
-      width: 40px;
-      height:40px;
-      background: black;
-      border-radius: 50%;
-      position: absolute;
-      left: 10%;
-      top: 50%;
-      transform:translateY(-50%) ;
-      z-index: 2;
-      background: url(img/money.png) no-repeat 0 / cover;
-      box-shadow: 2px 2px 10px -6px rgba(0,0,0,.8);
-    }
-    .top-left{
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-
-    }
-    .user-head-img{
-      background: #ccc;
-      width: 50px;
-      height:100%; 
-      border-radius: 5px;
-      background: url(img/8718367adab44aedd66a9f71b01c8701a18bfb7b.png) no-repeat 0 / cover;
-      box-shadow: 2px 3px 5px -3px rgba(0,0,0,.8);
-    }
-    .user-info{
-      display: grid;
-      grid-template-rows: auto auto;
-      grid-template-columns: auto;
-      align-content: space-between;
-      align-items: center;
-      padding-left: .3rem;
-    }
-    .user-info span{
-      display: block;
-      font:lighter 12px 'Microsoft YaHei';
-      color: #fff;
-      margin-top: 5px;
-      text-shadow: 0px 2px 2px rgba(0,0,0,.5);
-    }
-    .shop-icon{
-     
-      width: 40px;
-      height: 40px;
-      background: url(img/shop.png) no-repeat 0 / cover;
-
-
-    }
-    .start-game-wrapper{
-      display: flex;
-      width: 109px;
-      height: 98px;
-      
-      position: absolute;
-      left: 50%;
-      top:50%;
-      transform: translateX(-50%) translateY(-50%);
-      background: url(img/start.png) no-repeat 0 / 90%;
-    }
-        .hp-wrapper{
-          display: block;
-      position: relative;
-    }
-    .hp{
-      width: 150px;
-      height: 30px;
-      background: 
-                  linear-gradient(to bottom,rgba(255,255,255,.6),transparent),
-                  linear-gradient(45deg,transparent 50%,rgba(255,255,255,.5) ),
-                  url(img/ellipse.svg) no-repeat -40px -2px / auto
-      ;
-    
-      clip-path:ellipse(40% 90% at 50% 50%); 
-      shape-outside: ellipse(40% 90% at 50% 50%);
-
-      shape-margin:.5rem;
-      color:#fff;
-      text-align: center;
-      line-height: 30px;
-      letter-spacing: .1em;
-      text-indent: 1em;
-      
-
-    }
-    .hp-img{
-      width: 40px;
-      height:40px;
-      background: black;
-      
-      position: absolute;
-      left: 2%;
-      top: 50%;
-      transform:translateY(-50%);
-      z-index: 2;
-      background: url(img/hp1.png) no-repeat 0 /  80% 100%;
-    }
-    .bottom-wrapper{
-
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;  
-      align-items: center;
-      justify-content: space-around;  
-      width: 100%;
-      height: 50px;
-      position: absolute;
-      left: 0;
-
-
-    }
-    .close-game{
-      width: 50px;
-      height: 50px;
-      background: url(img/quit.png) no-repeat 0 / cover;
-      border-radius: 50%;
-      box-shadow: 0px 3px 15px -7px #000;
-      
-    }
-    .notice{
-     
-      width: 350px;
-      height: 30px;
-      margin: 0 auto;
-      border-radius: 20px;
-      margin-top: 1rem;
-      background: #03a9f470 url(img/Ebene.png) no-repeat .8rem center / 20px 20px;
-      text-align: center;
-      text-indent: 1.88rem;
-      
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      color: #fff;
-      font:lighter .8rem 'Microsoft YaHei';
-      line-height: 30px;
-    }
-    /*media */
-    @media screen and (max-width: 768px){
-      .nav-head{
-        width:100%;
-
-      }
-      .nav-list{
-        width: 100%;
-
-      }
-
-    }
-  </style>
 </head>
 <body>
 
-<!--
-<div class="login-reg-wrapper" style="display: none;">
-  <div class="login">登陆</div>
-  <div class="reg">注册</div>
-</div>
--->
-<div class="top-wrapper">
+<header></header>
+
+<div class="top-wrapper vue-contrl">
     <div class="top-left">
-        <div class="user-head-img" onclick="window.location.href='person.html'"></div>
+        <div class="user-head-img" title="点击这里去个人中心 整合时请删除这条 title 并加一个跳转事件" onclick="window.location.href='person.html'"></div>
         <div class="user-info">
-            <span>钓人的鱼</span>
-            <span>ID:12306</span>
+            <span>{{UserName}}</span>
+            <span>ID:{{Id}}</span>
         </div>
     </div>
     <div class="top-right">
         <div class="money-wrapper">
-          <div class="money">15926</div>
+          <div class="money">{{CoinsNum}}</div>
           <div class="money-img"></div>
         </div>
         <div class="shop-icon" onclick="window.location.href='shop.html'"></div>
     </div>
 </div>
 
-<div class="notice" onclick="window.location.href='notice.html'">
-  挖宝小游戏正式上线啦，快叫上小伙伴们来玩吧!
+<div class="notice" id="notice-area" onclick="window.location.href='notice.html'">
+  {{needDisplayNotice}}
 </div>
 
 
 <div class="start-game-wrapper" onclick="window.location.href='play.html'">
-    
+
 </div>
 <div class="bottom-wrapper">
-    <div class="hp-wrapper">
-        <div class="hp">31 / &infin;</div>
+    <div class="hp-wrapper vue-contrl" title="点击这里去充值体力 整合时请删除这条 title 并加一个跳转事件">
+        <div class="hp">{{hpNum}} / &infin;</div>
         <div class="hp-img"></div>
     </div>
     <div class="close-game"></div>
 </div>
 
-  
+
+
 <script>
+
+    let userVM = new Vue({
+        el:'.top-wrapper',
+        data:{
+            Id:'007',
+            UserName:'wuyuwei',
+            UserPicture:'',
+            CoinsNum:'',
+            SpiritNum:'',
+        }
+    });
+
+    let noticeVM =  new Vue({
+        el:"#notice-area",
+        data:{
+            notices:[
+                {Noticeid:0,NoticeTitle:'关于公测期间的服务器异常',NoticeContent:'您在' + new Date() + "成功充值100元",NoticeDate:"2019-8-16"},
+                {Noticeid:1,NoticeTitle:'心之门概率公示榜',NoticeContent:'您在' + new Date() + "成功充值100元wff oadfajfjf df adsjf asdof ad fagsfafadfa dfasdfadsf",NoticeDate:"2019-8-16"},
+                {Noticeid:2,NoticeTitle:'欢迎来到挖宝游戏 查看须知',NoticeContent:'您在' + new Date() + "成功充值100元",NoticeDate:"2019-8-16"}
+            ],
+            loopCount:0
+        },
+        mounted:function(){
+            setInterval(() =>{
+
+                if(this.loopCount == this.notices.length-1){
+                    this.loopCount = 0;
+                }
+                this.loopCount++
+
+            },5000)
+        },
+        computed:{
+            needDisplayNotice:{
+               get(){
+                   return this.notices[this.loopCount].NoticeTitle
+               }, set(newvalue){
+                    this.needDisplayNotice = newvalue
+                }
+            }
+        }
+    });
+
+
+
+
 $(function(){
 
   let $body = $('body');
   $body.css({'height':window.innerHeight});
 
   let $bottomMenu = $("#bottom-menu");
-  console.log($bottomMenu);
+
   $bottomMenu.css('top','calc('+window.innerHeight +'px' +  ' - ' + '43' +'px)');
   console.log('calc('+window.innerHeight +'px' +  ' - ' + '43' +'px)');
 
-  
 
   let bottomW = $('.bottom-wrapper');
   bottomW.ready(function(){
-    console.log(bottomW.height);
+
     bottomW.css('top','calc('+ window.innerHeight +'px' +  ' - ' + (bottomW.height()+10) +'px)')
   });
 
-  let noticeVM = new Vue({
-      el:'',
-      data:{
 
-      } 
-  });
+    getPlayerInfo()
+
+    $('body').click(function () {
+        // on click to do lacalStarge
+        let noticeObj = noticeVM.notices;
+
+        window.sessionStorage.setItem("noticeObj",JSON.stringify(noticeObj));
+        console.log(sessionStorage.getItem("noticeObj"));
+    })
 
 });
+
+
+</script>
+<script>
+    function getPlayerInfo() {
+//userInfo
+        let senUrl = '../untitled/dataTest.txt';
+        let requestData = '';
+        let isAsync = true;
+        let sendType = "POST";
+        let successCallback = function(data){
+            // entity 实体信息初始化
+            console.log('获取到的金币是：'+ data.money)
+            userVM.CoinsNum = data.money;
+            userVM.SpiritNum = data.hp;
+
+            console.log(data.money,data.hp)
+
+            let hpVM = new Vue({
+                el:'.hp',
+                data:{
+                    hpNum:userVM.SpiritNum
+                },
+                beforeMount(){
+                    console.log('这个时候还没完成渲染,所以我赋初值', userVM.SpiritNum)
+                    this.hpNum = userVM.SpiritNum;
+                }
+
+            })
+        }
+
+        let FailedCallback = function(err){
+            alert(false)
+        }
+        todoAjax(senUrl,requestData,isAsync,sendType,successCallback,FailedCallback);
+
+//noticeInfo
+        let [url,data,async,type] = ['','',true,"POST"]
+        let scallback = function(data){
+            noticeVM.notices = data;
+
+        }
+        let fcallback = function(err){
+            alert("网络不稳定，读取公告失败")
+        }
+        todoAjax(url,data,async,type,scallback,fcallback);
+
+    }
 </script>
 </body>
 </html>

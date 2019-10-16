@@ -51,15 +51,20 @@ function preBackgroundImg(pic,callback){
     }
 }
 
-function randomColor() {
-    var col = [0, 1, 2];
-    col[0] = Math.random() * 100 + 155;
-    col[0] = col[0].toFixed();
-    col[1] = Math.random() * 100 + 155;
-    col[1] = col[1].toFixed();
-    col[2] = Math.random() * 100 + 155;
-    col[2] = col[2].toFixed();
-    var num = Math.floor(Math.random() * 3);
-    col[num] = 0;
-    return "rgba(" + col[0] + "," + col[1] + "," + col[2] + ",";
+function todoAjax(url,data,async,type,scallback,fcallback) {
+    $.ajax({
+        url,
+        data,
+        type,
+        async,
+        dataType: 'json',
+        contentType: 'application/json;utf-8',
+        success(data) {
+            scallback(data);
+        },
+        error(err) {
+            fcallback(err);
+        }
+
+    })
 }

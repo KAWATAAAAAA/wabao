@@ -175,6 +175,7 @@
     </style>
 </head>
 <body>
+<header></header>
 <div id="all-canvas" class="canvas-wrapper">
     <canvas id="can1" width="375" height="812">You Browser do not support The tag 'Canvas',Please update</canvas>    <!--canvas1 用来游戏-->
     <canvas id="can2">You Browser do not support The tag 'Canvas',Please update</canvas>    <!--canvas2 用来计分、体力-->
@@ -324,18 +325,22 @@
 <script>
 
     // onclick="window.history.go(-1)"
-    let close = $('.close');
-    close.click(function () {
+    let quit = $('.close');
+    quit.click(function () {
         let userArea = $('#userArea')
         userArea.css('display','block')
 
         let cancel = $("[type='button']").click(function () {
             userArea.css('display','none')
-            $.ajax({
 
-            });
         });
     });
+
+    let saveAction = $(".scoreboard form [type='submit']");
+    saveAction.click(function (event) {
+        event.preventDefault();
+        todoStorage();
+    })
 
 </script>
 </body>
