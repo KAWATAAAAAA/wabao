@@ -1,6 +1,6 @@
 function getPlayerInfo() {
 
-    let url = '../untitled/dataTest.txt';
+    let url = '../wabao/dataTest.txt';
     let requestData = '';
     let isAsync = false;
     let sendType = "POST";
